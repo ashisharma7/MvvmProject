@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="activityViewModel"
+            type="com.app.mvvmproject.view_models.MainActivityViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.app.mvvmproject.view_models.ConfirmedFragmentViewModel" />
+
+        <import type="com.app.mvvmproject.R"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ConfirmingProcessFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="@string/shopName"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_20sdp" />
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:gravity="center_vertical"
+                android:text="@string/appointment_time" />
+
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text='@{viewModel.confirmedTokenGenerationModel.appointmentTime!=null?viewModel.confirmedTokenGenerationModel.appointmentTime:"Slot #,Time:"}' />
+
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text="@string/token_message" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="@string/your_token_number"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/ContentStyle"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="bottom"
+                    android:text='@{viewModel.confirmedTokenGenerationModel.yourTokenNumber!=null?viewModel.confirmedTokenGenerationModel.yourTokenNumber:"###"}'/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="@string/your_token_status"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/ContentStyle"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="bottom"
+                    android:text='@{viewModel.confirmedTokenGenerationModel.yourTokenStatus!=null?viewModel.confirmedTokenGenerationModel.yourTokenStatus:"Open"}'/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                style="@style/TitleStyle"
+                android:text="@string/qr_code_and_otp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/ContentStyle"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/qrImageView"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
+
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:text="or"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:textColor="@android:color/black"
+                    android:gravity="center"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:textStyle="bold"
+                    android:text='@{"OTP:\n"+viewModel.confirmedTokenGenerationModel.otp}'/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="@string/shop_distance"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/ContentStyle"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="bottom"
+                    android:text='@{viewModel.confirmedTokenGenerationModel.shopDistance!=null?viewModel.confirmedTokenGenerationModel.shopDistance:"500m"}'/>
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/shop_map_location"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp" />
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/shop_address"/>
+
+            <TextView
+                style="@style/ContentStyle"
+
+                android:text='@{viewModel.confirmedTokenGenerationModel.shopAddress!=null?viewModel.confirmedTokenGenerationModel.shopAddress:activityViewModel.currentActivity.getString(R.string.demo_address)}'/>
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/last_token_number_called"/>
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text='@{viewModel.confirmedTokenGenerationModel.lastTokenNumberCalled!=null?viewModel.confirmedTokenGenerationModel.lastTokenNumberCalled:"###"}'/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:text="Cancel Appointment"
+                    android:gravity="center"
+                    android:onClick="@{activityViewModel::onCancelAppointmentClicked}"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:cornerRadius="0dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:text="Close"
+                    android:gravity="center"
+                    android:onClick="@{activityViewModel::onCancelorCloseButtonClick}"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:cornerRadius="0dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

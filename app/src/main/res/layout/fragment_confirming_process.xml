@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activityViewModel"
+            type="com.app.mvvmproject.view_models.MainActivityViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.app.mvvmproject.view_models.ConfirmingProcessFragmentViewModel" />
+
+        <import type="com.app.mvvmproject.R"/>
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ConfirmingProcessFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:gravity="center"
+                android:text="@string/shopName"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_20sdp" />
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:gravity="center_vertical"
+                android:text="@string/appointment_time" />
+
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text='@{viewModel.confirmingTokenGenerationModel.appointmentTime!=null?viewModel.confirmingTokenGenerationModel.appointmentTime:"Slot #,Time:"}' />
+
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text="@string/token_message" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="@string/slot_fillings"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/ContentStyle"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="bottom"
+                    android:text='@{viewModel.confirmingTokenGenerationModel.slotFillings!=null?viewModel.confirmingTokenGenerationModel.slotFillings:"5/15"}'/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/shop_address"/>
+
+            <TextView
+                style="@style/ContentStyle"
+                android:text='@{viewModel.confirmingTokenGenerationModel.shopAddress!=null?viewModel.confirmingTokenGenerationModel.shopAddress:activityViewModel.currentActivity.getString(R.string.demo_address)}'/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/TitleStyle"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:text="@string/shop_distance"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    style="@style/ContentStyle"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="bottom"
+                    android:text='@{viewModel.confirmingTokenGenerationModel.shopDistance!=null?viewModel.confirmingTokenGenerationModel.shopDistance:"500m"}'/>
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/TitleStyle"
+                android:text="@string/shop_map_location"/>
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:text="Confirm"
+                    android:onClick="@{activityViewModel::onConfirmButtonClick}"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:cornerRadius="0dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                app:cardCornerRadius="@dimen/_8sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:text="Cancel"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:onClick="@{activityViewModel::onCancelorCloseButtonClick}"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_16sdp"
+                    app:cornerRadius="0dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</layout>

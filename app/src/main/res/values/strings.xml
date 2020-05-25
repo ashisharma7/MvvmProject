@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">MvvmProject</string>
+
+    <string name="title_activity_maps">Map</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCRlYGr2xZUBEd4KLqN0YLERfs2QcY9Twg</string>
+
+    <string name="shopName"><u>Shop Name</u></string>
+    <string name="appointment_time">Appointment Time:</string>
+
+    <string name="token_message">
+        Your Token will be valid only for 2 mins when your turn is called. If you are not present within this time, your token will be forfeited.
+    </string>
+    <string name="slot_fillings">Slot Fillings:</string>
+    <string name="shop_address">Shop Address:</string>
+
+    <string name="demo_address">
+        Apartment/Street Name, Area, City, State, Country – pin code.
+    </string>
+    <string name="shop_distance">Shop Distance:</string>
+    <string name="shop_map_location">Shop Map Location:</string>
+    <string name="your_token_status">Your Token Status:</string>
+    <string name="your_token_number">Your Token Number:</string>
+    <string name="qr_code_and_otp">QR Code and OTP:</string>
+    <string name="otp_n2212">OTP:\n2212</string>
+    <string name="last_token_number_called">Last Token Number Called:</string>
+    <string name="profile_settings">Profile Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="feedback_content">Feedback Content*</string>
+    <string name="email_id">Email ID*</string>
+    <string name="submit">Submit</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="otp">OTP*</string>
+    <string name="email_id_optional">Email ID (optional)</string>
+    <string name="log_out">Log Out</string>
+    <string name="set_language">Set Language:</string>
+    <string name="english">English*</string>
+    <string name="save">Save</string>
+    <string name="token_number"><u>Token Number</u></string>
 </resources>

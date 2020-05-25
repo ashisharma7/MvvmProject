@@ -1,7 +1,11 @@
 package com.app.mvvmproject.handlers;
 
-import android.content.Context;
+import androidx.fragment.app.Fragment;
 
 public interface MainActivityHandler extends BaseActivityHandler {
-    Context getContext();
+    void moveToFragment(Fragment fragment);
+
+    void moveToFragmentWithBackStack(Fragment fragment);
+
+    void closeActivity();
 }
