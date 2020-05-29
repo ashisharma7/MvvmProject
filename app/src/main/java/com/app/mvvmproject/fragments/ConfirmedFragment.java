@@ -61,7 +61,7 @@ public class ConfirmedFragment extends BaseFragment implements ConfirmedFragment
                             .getQRImage(otp)
             );
             confirmedFragmentViewModel.confirmedTokenGenerationModel.setOtp(otp);
-        }catch (WriterException e){}
+        }catch (WriterException ignored){}
 
     }
 

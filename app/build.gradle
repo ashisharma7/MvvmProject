@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.app.mvvmproject"
-        minSdkVersion 24
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,7 @@ android {
     android {
         viewBinding.enabled = true
         dataBinding.enabled = true
+        buildToolsVersion '28.0.3'
     }
 
 }
@@ -49,7 +50,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //zxing
-    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+    implementation('com.journeyapps:zxing-android-embedded:4.1.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.4.0'
 
     //map
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
